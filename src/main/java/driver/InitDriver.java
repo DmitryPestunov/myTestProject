@@ -1,15 +1,17 @@
 package driver;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class InitDriver {
-    private static WebDriver driver;
+    public static WebDriver driver;
 
     private InitDriver() {
     }
 
-    public static WebDriver initDriver() {
+    public static WebDriver getDriver() {
         if (driver == null) {
             createDriver();
             return driver;
@@ -18,7 +20,16 @@ public class InitDriver {
     }
 
     private static void createDriver() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        //chromeOptions.addArguments(Property)
         driver = new ChromeDriver();
     }
+
+    public static void quitDriver(){
+        if(driver !=null){
+            driver.quit();
+        }
+    }
+
 }
