@@ -23,13 +23,7 @@ public class BasePage {
         PageFactory.initElements(driver, this);
     }
 
-
     public void openPage(){
         driver.get(URL);
     }
-
-    public void quit(){
-        driver.quit();
-    }
-
 }
